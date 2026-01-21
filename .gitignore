@@ -1,0 +1,8 @@
+.DS_Store
+/assets/GIMP_Files/
+notes.md
+/assets/images/team/portrait/
+node_modules/
+dist/
+.env
+contentful-proxy.php
