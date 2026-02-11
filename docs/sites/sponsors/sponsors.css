@@ -22,7 +22,7 @@
   margin: 0 0 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent);
 }
@@ -161,10 +161,6 @@ html[data-theme="dark"] .sponsor-hero__figure--secondary {
 }
 
 
-
-
-
-
 .sponsor-type__list {
   list-style: none;
   padding: 0;
@@ -260,7 +256,7 @@ html[data-theme="dark"] .tier-card {
 
 .tier-card--featured {
   border-color: rgba(235, 0, 40, 0.2);
-  background: linear-gradient(160deg, rgba(235, 0, 40, 0.08), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(160deg, rgba(235, 133, 0, 0.08), rgba(255, 133, 0, 0.02));
 }
 
 .tier-card--platinum {
@@ -331,7 +327,7 @@ html[data-theme="dark"] .sponsor-gallery__card {
   font-weight: 700;
   font-size: 0.85rem;
   color: #fff;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(74, 74, 74, 0.1), rgba(74, 74, 74, 0.08));
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: 0 6px 20px rgba(2, 6, 23, 0.04);
@@ -489,4 +485,13 @@ html[data-theme="dark"] .sponsor-email__card {
   .sponsor-email__wrap {
     gap: 0.6rem;
   }
+}
+
+.sponsor-why {
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.sponsor-why__content {
+  max-width: 720px;
 }
