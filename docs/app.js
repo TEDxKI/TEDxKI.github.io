@@ -375,6 +375,45 @@
     if (el) el.textContent = new Date().getFullYear();
   })();
 
+  /* ================================
+    Newsletter Popup
+  ================================ */
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const popup = document.querySelector(".newsletter-popup");
+    const backdrop = document.querySelector(".newsletter-backdrop");
+    const closeBtn = document.querySelector(".newsletter-close");
+    const inner = document.querySelector(".newsletter-inner");
+
+    if (!popup) return;
+
+    /* Show only once per session */
+    if (!sessionStorage.getItem("newsletterShown")) {
+
+      setTimeout(() => {
+        popup.classList.add("active");
+        backdrop.classList.add("active");
+        popup.setAttribute("aria-hidden", "false");
+        sessionStorage.setItem("newsletterShown", "true");
+      }, 6000);
+    }
+
+    function closePopup(){
+      popup.classList.remove("active");
+      backdrop.classList.remove("active");
+      popup.setAttribute("aria-hidden", "true");
+    }
+
+    /* Close button */
+    closeBtn.addEventListener("click", closePopup);
+
+    /* Click outside (backdrop click) */
+    backdrop.addEventListener("click", closePopup);
+
+  });
+
+
 
 
 
