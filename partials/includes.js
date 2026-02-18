@@ -91,6 +91,32 @@ class SiteFooter extends HTMLElement {
   }
 }
 
+class newsletterpopup extends HTMLElement {
+  connectedCallback(){
+     this.innerHTML = `
+      <div class="newsletter-backdrop"></div>
+
+      <div class="newsletter-popup" aria-hidden="true">
+        <div class="newsletter-inner">
+          <button class="newsletter-close" aria-label="Close newsletter">&times;</button>
+
+          <div class="newsletter-content">
+            <h3>Stay inspired<span class="sup">x</span></h3>
+            <p>Get updates on ticket releases and more!</p>
+            <p>(We’ll only contact you occasionally with relevant news - no spam.)</p>
+
+            <div class="newsletter-embed">
+              <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdnmlblZAu8biXLixSWWbcaokHPGKxITBVUQsZ1o2fKXCzUQg/viewform?embedded=true">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
 customElements.define('site-header', SiteHeader);
 customElements.define('social-strip', SocialStrip);
 customElements.define('site-footer', SiteFooter);
+customElements.define('newsletter-popup', newsletterpopup);
