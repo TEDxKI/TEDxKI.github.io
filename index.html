@@ -39,15 +39,17 @@
 
   <main>
     <!-- Hero -->
-    <section id="hero" class="hero" aria-label="Hero section">
-      <img
-        id="hero-background"
-        class="hero-image"
-        src="/assets/images/UnderConstruction.png"
-        alt="TEDxKI hero background"
-        data-static-code="hero-background"
-        data-static-params="fm=webp&q=86&w=1400"
-      />
+    <section id="hero" class="hero hero-split">
+
+      <div class="hero-image-wrapper">
+        <img
+          id="hero-background"
+          class="hero-image"
+          src="/assets/images/UnderConstruction.png"
+          alt="TEDxKI hero background"
+        />
+      </div>
+
       <div class="hero-overlay container">
         <div class="hero-copy">
           <h1 class="hero-text">
@@ -58,7 +60,65 @@
           <p class="hero-sub">From Thought to Action: The Power of Ideas to Transform the World.</p>
         </div>
       </div>
+
+      <aside class="ticket-panel" aria-label="Ticket information">
+        <div class="ticket-panel__surface">
+          <div class="ticket-inner">
+            <h1 class="ticket-title"> TED<span style="font-size: 0.52em; vertical-align: super;">x</span>KI 2026</h1>
+            <p class="ticket-sub">Tickets are now available.</p>
+
+            <div class="event-info">
+              <div class="event-item">
+                <div class="event-icon">🗓️</div>
+                <div class="event-text">
+                  <span class="event-label">Date</span>
+                  <span class="event-value">18 April 2026</span>
+                </div>
+              </div>
+
+              <div class="event-item">
+                <div class="event-icon">📍</div>
+                <div class="event-text">
+                  <span class="event-label">Location</span>
+                  <a class="event-value event-map"
+                    href="https://maps.app.goo.gl/HNtQtwXqsqydMBS17"
+                    target="_blank"
+                    rel="noopener">
+                    Medicinska Föreningen
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="countdown-frame">
+              <div class="countdown-item">
+                <span id="days">00</span>
+                <label>days</label>
+              </div>
+              <div class="countdown-item">
+                <span id="hours">00</span>
+                <label>hours</label>
+              </div>
+              <div class="countdown-item">
+                <span id="minutes">00</span>
+                <label>minutes</label>
+              </div>
+              <div class="countdown-item">
+                <span id="seconds">00</span>
+                <label>seconds</label>
+              </div>
+            </div>
+
+            <a class="ticket-btn" href="https://youtu.be/xW0IR3q0EvE?si=C-Nmkbo2idCsjpkx&t=9" target="_blank" rel="noopener">
+              Get Tickets
+            </a>
+          </div>
+        </div>
+      </aside>
+
+
     </section>
+
 
     <!-- Content / example sections -->
     <section class="container content-list">
