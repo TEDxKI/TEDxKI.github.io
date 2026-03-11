@@ -12,6 +12,7 @@
   const emailButton = document.getElementById('formEmailButton');
   const linkBlock = document.getElementById('formLinkBlock');
   const linkButton = document.getElementById('formLinkButton');
+  const studentBlock = document.getElementById('formStudentBlock');
 
   if (!options.length || !frame) return;
 
@@ -66,14 +67,16 @@
       }
     }
 
-    const isLinkOnly = embed === 'link' || !src;
-
+    const isLinkOnly = embed === 'link' || (!src && embed !== 'student');
+    const isStudentOnly = embed === 'student';
+    
     if (frame) {
-      frame.hidden = isLinkOnly;
-      frame.style.display = isLinkOnly ? 'none' : 'block';
-      frame.setAttribute('aria-hidden', isLinkOnly ? 'true' : 'false');
-
-      if (!isLinkOnly) {
+      const hideFrame = isLinkOnly || isStudentOnly;
+      frame.hidden = hideFrame;
+      frame.style.display = hideFrame ? 'none' : 'block';
+      frame.setAttribute('aria-hidden', hideFrame ? 'true' : 'false');
+      
+      if (!hideFrame) {
         const nextSrc = src || '';
         if (height) {
           frame.style.height = `${height}px`;
@@ -83,7 +86,7 @@
           frame.src = nextSrc;
           frame.dataset.activeSrc = nextSrc;
         }
-        frame.title = `${nextTitle} form`;
+        frame.title = nextTitle + ' form';
       }
     }
 
@@ -91,6 +94,13 @@
       linkBlock.hidden = !isLinkOnly;
       linkBlock.setAttribute('aria-hidden', isLinkOnly ? 'false' : 'true');
     }
+
+    if (studentBlock) {
+      studentBlock.hidden = !isStudentOnly;
+      studentBlock.style.display = isStudentOnly ? 'block' : 'none';
+      studentBlock.setAttribute('aria-hidden', isStudentOnly ? 'false' : 'true');
+    }
+
 
     if (linkButton) {
       const href = link || src || '';
@@ -108,9 +118,10 @@
     }
 
     if (captionEl) {
-      captionEl.hidden = isLinkOnly;
-      captionEl.style.display = isLinkOnly ? 'none' : '';
-      captionEl.setAttribute('aria-hidden', isLinkOnly ? 'true' : 'false');
+      const hideCaption = isLinkOnly || isStudentOnly;
+      captionEl.hidden = hideCaption;
+      captionEl.style.display = hideCaption ? 'none' : '';
+      captionEl.setAttribute('aria-hidden', hideCaption ? 'true' : 'false');
     }
 
     if (key) {
