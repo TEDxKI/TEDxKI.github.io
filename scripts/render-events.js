@@ -5,6 +5,7 @@ import { JSDOM } from 'jsdom';
 
 import { runContentfulQuery } from './lib/contentful.js';
 import { EVENT_LIST_QUERY, EVENT_BY_YEAR_QUERY } from './queries/eventQueries.js';
+import { TEAM_BY_YEAR_QUERY } from './queries/teamQueries.js';
 import { renderEventContent, renderEventOptions, determineInitialYear } from '../sites/events/eventRenderer.js';
 import { injectStaticImages } from './lib/staticImages.js';
 
@@ -29,7 +30,31 @@ export async function renderEventsPage() {
     try {
       const detailData = await runContentfulQuery(EVENT_BY_YEAR_QUERY, { year });
       const full = detailData?.eventCollection?.items?.[0];
-      if (full) detailedEvents.push(full);
+      
+      if (full) {
+        // OVERRIDE FOR 2026 OR NEWER
+        if (year >= 2026) {
+          const teamData = await runContentfulQuery(TEAM_BY_YEAR_QUERY, { year, limit: 100 });
+          const members = teamData?.newTeamMemberCardCollection?.items || [];
+          
+          // Group the fetched members by their 'team' field
+          const teamsMap = {};
+          for (const m of members) {
+            const teamName = m.team || 'Other';
+            if (!teamsMap[teamName]) teamsMap[teamName] = [];
+            teamsMap[teamName].push(m);
+          }
+          
+          // Reconstruct the teamsCollection layout so eventRenderer can parse it
+          full.teamsCollection = {
+            items: Object.keys(teamsMap).map(teamName => ({
+              name: teamName,
+              teamMembersCollection: { items: teamsMap[teamName] }
+            }))
+          };
+        }
+        detailedEvents.push(full);
+      }
     } catch (err) {
       console.warn(`Skipping event year ${year} due to fetch error:`, err?.message || err);
     }

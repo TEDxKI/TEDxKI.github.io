@@ -17,9 +17,12 @@ export function renderEventContent(doc, event, { fallbackYear } = {}) {
     heroImg.alt = hero.description || event.name || 'TEDxKI event';
   }
 
-  renderPeopleSection(doc, event?.speakersCollection, 'speakersGrid', 'speakersSection');
-  renderPeopleSection(doc, event?.hostsCollection, 'hostsGrid', 'hostsSection');
-  renderPeopleSection(doc, event?.performersCollection, 'performersGrid', 'performersSection');
+  // Flag to conditionally render LinkedIn on speakers/hosts for 2026+
+  const showLinkedIn = (event.yearIdentifier >= 2026) || (!event.yearIdentifier && fallbackYear >= 2026);
+
+  renderPeopleSection(doc, event?.speakersCollection, 'speakersGrid', 'speakersSection', showLinkedIn);
+  renderPeopleSection(doc, event?.hostsCollection, 'hostsGrid', 'hostsSection', showLinkedIn);
+  renderPeopleSection(doc, event?.performersCollection, 'performersGrid', 'performersSection', showLinkedIn);
   renderEventTeams(doc, event?.teamsCollection);
 }
 
@@ -63,7 +66,7 @@ export function determineInitialYear(events, preferredYear, fallbackYear) {
   return fallbackYear || null;
 }
 
-function renderPeopleSection(doc, collection, gridId, sectionId) {
+function renderPeopleSection(doc, collection, gridId, sectionId, showLinkedIn = false) {
   const section = doc.getElementById(sectionId);
   const grid = doc.getElementById(gridId);
   if (!section || !grid) return;
@@ -77,13 +80,13 @@ function renderPeopleSection(doc, collection, gridId, sectionId) {
   }
 
   people.forEach(person => {
-    grid.appendChild(createPersonCard(doc, person));
+    grid.appendChild(createPersonCard(doc, person, showLinkedIn));
   });
 
   section.hidden = false;
 }
 
-function createPersonCard(doc, person) {
+function createPersonCard(doc, person, showLinkedIn) {
   const card = doc.createElement('article');
   card.className = 'event-person-card';
 
@@ -103,6 +106,26 @@ function createPersonCard(doc, person) {
     avatar.appendChild(span);
   }
   card.appendChild(avatar);
+
+  // ADD LINKEDIN ICON IF APPLICABLE AND AVAILABLE (Speakers & Hosts)
+  if (showLinkedIn) {
+    const linkedInUrl = person?.linkedInProfileLink || person?.linkedin || person?.linkedInUrl;
+    if (linkedInUrl) {
+      const lnk = doc.createElement('a');
+      lnk.className = 'linkedin';
+      lnk.href = linkedInUrl;
+      lnk.target = '_blank';
+      lnk.rel = 'noopener noreferrer';
+      lnk.setAttribute('aria-label', `LinkedIn profile of ${normalizePersonName(person)}`);
+
+      const lnkImg = doc.createElement('img');
+      lnkImg.src = '/assets/icons/linkedin.svg';
+      lnkImg.alt = '';
+      
+      lnk.appendChild(lnkImg);
+      card.appendChild(lnk);
+    }
+  }
 
   const meta = doc.createElement('div');
   meta.className = 'event-person-meta';
@@ -219,6 +242,23 @@ function buildTeamCard(doc, member) {
     placeholder.textContent = (fullName || '?').charAt(0).toUpperCase();
     placeholder.setAttribute('aria-label', fullName || 'Team member');
     wrap.appendChild(placeholder);
+  }
+
+  // ADD LINKEDIN ICON IF AVAILABLE
+  if (member?.linkedInUrl) {
+    const lnk = doc.createElement('a');
+    lnk.className = 'linkedin';
+    lnk.href = member.linkedInUrl;
+    lnk.target = '_blank';
+    lnk.rel = 'noopener noreferrer';
+    lnk.setAttribute('aria-label', `LinkedIn profile of ${fullName}`);
+
+    const lnkImg = doc.createElement('img');
+    lnkImg.src = '/assets/icons/linkedin.svg';
+    lnkImg.alt = '';
+    
+    lnk.appendChild(lnkImg);
+    wrap.appendChild(lnk);
   }
 
   const label = doc.createElement('div');
