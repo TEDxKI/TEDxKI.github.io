@@ -179,15 +179,18 @@
   color: var(--accent);
 }
 
-/* Simple people grid for speakers/hosts/performers.
-   You can make this fancier or reuse team cards here too if you prefer. */
+
+/* THE GRID: Make sure modern portrait cards size nicely in the grid */
 .event-people-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 2rem;
   justify-items: center;
+  align-items: stretch;
 }
 
+
+/* LEGACY ROUNDED CARDS (< 2026) */
 .event-person-card {
   padding: 1.4rem;
   border-radius: 20px;
@@ -251,6 +254,17 @@
   position: relative;
 }
 
+/* MODERN PORTRAIT CARDS (>= 2026) */
+.event-person-card--modern {
+  /* Strip the legacy background / padding because .portrait-wrap handles it */
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  max-width: 100%;
+  margin: 0;
+}
+
+
 /* ----- TEAM SECTIONS ----- */
 
 .event-team-section {
@@ -265,8 +279,6 @@
   font-size: clamp(1.3rem, 2.5vw, 1.6rem);
   font-weight: 800;
 }
-
-/* The actual grid + card styling comes from team.css (team-grid, cols, col, portrait-wrap, etc.) */
 
 .portrait--placeholder {
   display: flex;
