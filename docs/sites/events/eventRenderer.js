@@ -2,8 +2,6 @@ const HERO_IMAGE_PARAMS = 'fm=webp&q=85&w=1400';
 const PERSON_IMAGE_PARAMS = 'fm=webp&w=300&q=80';
 const TEAM_IMAGE_PARAMS = 'fm=webp&q=80&w=900';
 
-const LINKEDIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
-
 export function renderEventContent(doc, event, { fallbackYear } = {}) {
   if (!doc || !event) return;
   const yearText = event.yearIdentifier || fallbackYear;
@@ -19,13 +17,12 @@ export function renderEventContent(doc, event, { fallbackYear } = {}) {
     heroImg.alt = hero.description || event.name || 'TEDxKI event';
   }
 
-  // Cast the year to a number to ensure strict >= 2026 checking works
-  const parsedYear = Number(event.yearIdentifier) || Number(fallbackYear) || 0;
-  const isModernLayout = parsedYear >= 2026;
+  // Flag to conditionally render LinkedIn on speakers/hosts for 2026+
+  const showLinkedIn = (event.yearIdentifier >= 2026) || (!event.yearIdentifier && fallbackYear >= 2026);
 
-  renderPeopleSection(doc, event?.speakersCollection, 'speakersGrid', 'speakersSection', isModernLayout);
-  renderPeopleSection(doc, event?.hostsCollection, 'hostsGrid', 'hostsSection', isModernLayout);
-  renderPeopleSection(doc, event?.performersCollection, 'performersGrid', 'performersSection', isModernLayout);
+  renderPeopleSection(doc, event?.speakersCollection, 'speakersGrid', 'speakersSection', showLinkedIn);
+  renderPeopleSection(doc, event?.hostsCollection, 'hostsGrid', 'hostsSection', showLinkedIn);
+  renderPeopleSection(doc, event?.performersCollection, 'performersGrid', 'performersSection', showLinkedIn);
   renderEventTeams(doc, event?.teamsCollection);
 }
 
@@ -69,7 +66,7 @@ export function determineInitialYear(events, preferredYear, fallbackYear) {
   return fallbackYear || null;
 }
 
-function renderPeopleSection(doc, collection, gridId, sectionId, isModernLayout) {
+function renderPeopleSection(doc, collection, gridId, sectionId, showLinkedIn = false) {
   const section = doc.getElementById(sectionId);
   const grid = doc.getElementById(gridId);
   if (!section || !grid) return;
@@ -83,114 +80,70 @@ function renderPeopleSection(doc, collection, gridId, sectionId, isModernLayout)
   }
 
   people.forEach(person => {
-    grid.appendChild(createPersonCard(doc, person, isModernLayout));
+    grid.appendChild(createPersonCard(doc, person, showLinkedIn));
   });
 
   section.hidden = false;
 }
 
-function createPersonCard(doc, person, isModernLayout) {
+function createPersonCard(doc, person, showLinkedIn) {
   const card = doc.createElement('article');
-  const fullName = normalizePersonName(person);
-  const roleText = normalizeRole(person);
+  card.className = 'event-person-card';
+
+  const avatar = doc.createElement('div');
+  avatar.className = 'event-person-avatar';
   const photo = getPersonImage(person);
-  const linkedInUrl = person?.linkedInProfileLink || person?.linkedin || person?.linkedInUrl;
+  if (photo?.url) {
+    const img = doc.createElement('img');
+    img.src = withImageParams(photo.url, PERSON_IMAGE_PARAMS);
+    img.alt = photo.description || normalizePersonName(person) || 'Event contributor';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    avatar.appendChild(img);
+  } else {
+    const span = doc.createElement('span');
+    span.textContent = getNameInitial(person);
+    avatar.appendChild(span);
+  }
+  card.appendChild(avatar);
 
-  if (isModernLayout) {
-    // ----------------------------------------------------
-    // MODERN 2026+ PORTRAIT LAYOUT (Mirrors Team Card HTML)
-    // ----------------------------------------------------
-    card.className = 'team-card event-person-card--modern'; 
-
-    const wrap = doc.createElement('div');
-    wrap.className = 'portrait-wrap animate-once';
-    wrap.dataset.anim = 'slide-up';
-
-    if (photo?.url) {
-      const img = doc.createElement('img');
-      img.className = 'portrait';
-      img.src = withImageParams(photo.url, TEAM_IMAGE_PARAMS);
-      img.alt = photo.description || fullName || 'Event Contributor';
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      wrap.appendChild(img);
-    } else {
-      const placeholder = doc.createElement('div');
-      placeholder.className = 'portrait portrait--placeholder';
-      placeholder.textContent = (fullName || '?').charAt(0).toUpperCase();
-      wrap.appendChild(placeholder);
-    }
-
+  // ADD LINKEDIN ICON IF APPLICABLE AND AVAILABLE (Speakers & Hosts)
+  if (showLinkedIn) {
+    const linkedInUrl = person?.linkedInProfileLink || person?.linkedin || person?.linkedInUrl;
     if (linkedInUrl) {
       const lnk = doc.createElement('a');
       lnk.className = 'linkedin';
       lnk.href = linkedInUrl;
       lnk.target = '_blank';
       lnk.rel = 'noopener noreferrer';
-      lnk.setAttribute('aria-label', `LinkedIn profile of ${fullName}`);
-      lnk.innerHTML = LINKEDIN_SVG;
-      wrap.appendChild(lnk);
+      lnk.setAttribute('aria-label', `LinkedIn profile of ${normalizePersonName(person)}`);
+
+      const lnkImg = doc.createElement('img');
+      lnkImg.src = '/assets/logos/social/LI-In-Bug.png';
+      lnkImg.alt = '';
+      
+      lnk.appendChild(lnkImg);
+      card.appendChild(lnk);
     }
-
-    const label = doc.createElement('div');
-    label.className = 'card-label';
-
-    const nameEl = doc.createElement('span');
-    nameEl.className = 'name';
-    nameEl.textContent = fullName;
-    label.appendChild(nameEl);
-
-    if (roleText) {
-      const roleEl = doc.createElement('span');
-      roleEl.className = 'role';
-      roleEl.textContent = roleText;
-      label.appendChild(roleEl);
-    }
-
-    wrap.appendChild(label);
-    card.appendChild(wrap);
-
-  } else {
-    // ----------------------------------------------------
-    // LEGACY <2026 ROUND AVATAR LAYOUT
-    // ----------------------------------------------------
-    card.className = 'event-person-card';
-
-    const avatar = doc.createElement('div');
-    avatar.className = 'event-person-avatar';
-    
-    if (photo?.url) {
-      const img = doc.createElement('img');
-      img.src = withImageParams(photo.url, PERSON_IMAGE_PARAMS);
-      img.alt = photo.description || fullName || 'Event contributor';
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      avatar.appendChild(img);
-    } else {
-      const span = doc.createElement('span');
-      span.textContent = getNameInitial(person);
-      avatar.appendChild(span);
-    }
-    card.appendChild(avatar);
-
-    const meta = doc.createElement('div');
-    meta.className = 'event-person-meta';
-
-    const name = doc.createElement('div');
-    name.className = 'event-person-name';
-    name.textContent = fullName;
-    meta.appendChild(name);
-
-    if (roleText) {
-      const role = doc.createElement('div');
-      role.className = 'event-person-role';
-      role.textContent = roleText;
-      meta.appendChild(role);
-    }
-
-    card.appendChild(meta);
   }
 
+  const meta = doc.createElement('div');
+  meta.className = 'event-person-meta';
+
+  const name = doc.createElement('div');
+  name.className = 'event-person-name';
+  name.textContent = normalizePersonName(person);
+  meta.appendChild(name);
+
+  const roleText = normalizeRole(person);
+  if (roleText) {
+    const role = doc.createElement('div');
+    role.className = 'event-person-role';
+    role.textContent = roleText;
+    meta.appendChild(role);
+  }
+
+  card.appendChild(meta);
   return card;
 }
 
@@ -291,15 +244,20 @@ function buildTeamCard(doc, member) {
     wrap.appendChild(placeholder);
   }
 
-  const linkedInUrl = member?.linkedInUrl || member?.linkedin || member?.linkedInProfileLink;
-  if (linkedInUrl) {
+  // ADD LINKEDIN ICON IF AVAILABLE
+  if (member?.linkedInUrl) {
     const lnk = doc.createElement('a');
     lnk.className = 'linkedin';
-    lnk.href = linkedInUrl;
+    lnk.href = member.linkedInUrl;
     lnk.target = '_blank';
     lnk.rel = 'noopener noreferrer';
     lnk.setAttribute('aria-label', `LinkedIn profile of ${fullName}`);
-    lnk.innerHTML = LINKEDIN_SVG;
+
+    const lnkImg = doc.createElement('img');
+    lnkImg.src = '/assets/logos/social/LI-In-Bug.png';
+    lnkImg.alt = '';
+    
+    lnk.appendChild(lnkImg);
     wrap.appendChild(lnk);
   }
 

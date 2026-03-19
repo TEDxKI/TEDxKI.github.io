@@ -179,19 +179,17 @@
   color: var(--accent);
 }
 
-
-/* THE GRID: Make sure modern portrait cards size nicely in the grid */
+/* Simple people grid for speakers/hosts/performers.
+   You can make this fancier or reuse team cards here too if you prefer. */
 .event-people-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   justify-items: center;
-  align-items: stretch;
 }
 
-
-/* LEGACY ROUNDED CARDS (< 2026) */
 .event-person-card {
+  position: relative; /* REQUIRED to position the LinkedIn button properly */
   padding: 1.4rem;
   border-radius: 20px;
   background: var(--surface, rgba(15, 23, 42, 0.72));
@@ -204,6 +202,38 @@
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
+}
+
+/* Glassy LinkedIn Icon Styling mapped natively from your team.css */
+.event-person-card .linkedin {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  z-index: 9;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.event-person-card .linkedin img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+}
+
+.event-person-card .linkedin:hover,
+.event-person-card .linkedin:focus {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.10));
+  box-shadow: 0 10px 26px rgba(2,6,23,0.12);
 }
 
 .event-person-name {
@@ -254,17 +284,6 @@
   position: relative;
 }
 
-/* MODERN PORTRAIT CARDS (>= 2026) */
-.event-person-card--modern {
-  /* Strip the legacy background / padding because .portrait-wrap handles it */
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
-  max-width: 100%;
-  margin: 0;
-}
-
-
 /* ----- TEAM SECTIONS ----- */
 
 .event-team-section {
@@ -279,6 +298,8 @@
   font-size: clamp(1.3rem, 2.5vw, 1.6rem);
   font-weight: 800;
 }
+
+/* The actual grid + card styling comes from team.css (team-grid, cols, col, portrait-wrap, etc.) */
 
 .portrait--placeholder {
   display: flex;
@@ -312,4 +333,30 @@
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+}
+
+
+
+.ticket-btn{
+  display:block;
+  width:100%;
+  text-align:center;
+  background:#fff;
+  color:#EB0028;
+  padding:16px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.04em;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.ticket-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
+  background:#fff5f6;
 }

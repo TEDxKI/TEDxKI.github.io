@@ -119,7 +119,7 @@ function createPersonCard(doc, person, showLinkedIn) {
       lnk.setAttribute('aria-label', `LinkedIn profile of ${normalizePersonName(person)}`);
 
       const lnkImg = doc.createElement('img');
-      lnkImg.src = '/assets/icons/linkedin.svg';
+      lnkImg.src = '/assets/logos/social/LI-In-Bug.png';
       lnkImg.alt = '';
       
       lnk.appendChild(lnkImg);
@@ -254,7 +254,7 @@ function buildTeamCard(doc, member) {
     lnk.setAttribute('aria-label', `LinkedIn profile of ${fullName}`);
 
     const lnkImg = doc.createElement('img');
-    lnkImg.src = '/assets/icons/linkedin.svg';
+    lnkImg.src = '/assets/logos/social/LI-In-Bug.png';
     lnkImg.alt = '';
     
     lnk.appendChild(lnkImg);
