@@ -76,6 +76,11 @@ export async function renderEventsPage() {
   renderEventOptions(document, detailedEvents, initialYear);
   renderEventContent(document, initialEvent, { fallbackYear: initialYear });
 
+  // Make animated elements visible by default
+  document.querySelectorAll('.animate-once').forEach(el => {
+    el.classList.add('is-visible');
+  });
+
   const dataEl = document.getElementById('event-data');
   if (dataEl) {
     const payload = {

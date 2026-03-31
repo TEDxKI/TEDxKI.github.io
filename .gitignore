@@ -6,3 +6,4 @@ node_modules/
 dist/
 .env
 contentful-proxy.php
+docs/Archive.zip

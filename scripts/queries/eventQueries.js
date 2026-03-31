@@ -30,6 +30,7 @@ export const EVENT_BY_YEAR_QUERY = `
             ... on Speaker {
               name
               jobTitle
+              bio
               linkedInProfileLink
               photo { url description }
             }
@@ -41,6 +42,7 @@ export const EVENT_BY_YEAR_QUERY = `
             ... on Performer {
               name
               title
+              bio
               photo { url description }
             }
             ... on NewTeamMemberCard {
@@ -82,6 +84,7 @@ export const EVENT_BY_YEAR_QUERY = `
             ... on Performer {
               name
               title
+              bio
               photo { url description }
             }
             ... on Speaker {
