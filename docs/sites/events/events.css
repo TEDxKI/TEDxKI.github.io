@@ -1,6 +1,6 @@
 /* EVENT PAGE SPECIFIC STYLES
-   - Hero text bits
-   - Section headings / grids for speakers / teams
+- Hero text bits
+- Section headings / grids for speakers / teams
 */
 
 /* small helper if your global CSS doesn't already have this */
@@ -12,9 +12,6 @@
 
 .event-hero {
   background: transparent;
-}
-
-.event-hero {
   --hero-img-height: 520px;
 }
 
@@ -117,15 +114,13 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
-
   .event-hero .team-stack {
     --img-w: 92%;
     --rect-w: 96%;
     min-height: calc(var(--hero-img-height) + 32px);
   }
-
   .event-hero .team-text {
-  margin-inline: auto;
+    margin-inline: auto;
   }
 }
 
@@ -134,7 +129,6 @@
     max-width: min(1320px, 96vw);
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   }
-
   .event-hero .team-stack {
     --rect-w: 100%;
     --img-w: 96%;
@@ -152,9 +146,7 @@
   margin-bottom: 0.25rem;
 }
 
-.event-hero #eventName {
-  /* already styled via .team-title in team.css */
-}
+/* eventName already styled via .team-title in team.css */
 
 .event-meta {
   margin: 0.35rem 0 0.5rem;
@@ -179,8 +171,7 @@
   color: var(--accent);
 }
 
-/* Simple people grid for speakers/hosts/performers.
-   You can make this fancier or reuse team cards here too if you prefer. */
+/* Shared Grid and Glassy LinkedIn Icon */
 .event-people-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -188,47 +179,20 @@
   justify-items: center;
 }
 
-.event-person-card {
-  position: relative; /* REQUIRED to position the LinkedIn button properly */
-  padding: 1.4rem;
-  border-radius: 20px;
-  background: var(--surface, rgba(15, 23, 42, 0.72));
-  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.9rem;
-  text-align: center;
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-}
-
-/* Glassy LinkedIn Icon Styling mapped natively from your team.css */
 .event-person-card .linkedin {
   position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  z-index: 9;
+  right: 12px; top: 12px;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 10px; z-index: 10; pointer-events: auto;
   background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+  backdrop-filter: blur(6px); box-shadow: 0 8px 20px rgba(2,6,23,0.08);
   transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
-
 .event-person-card .linkedin img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+  width: 18px; height: 18px; object-fit: contain; filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
 }
-
 .event-person-card .linkedin:hover,
 .event-person-card .linkedin:focus {
   transform: translateY(-2px);
@@ -236,53 +200,253 @@
   box-shadow: 0 10px 26px rgba(2,6,23,0.12);
 }
 
-.event-person-name {
-  font-weight: 700;
-  margin-bottom: 0.25rem;
+/* --- LEGACY LAYOUT (Pre-2026) --- */
+.event-person-card.legacy {
+  position: relative; padding: 1.4rem; border-radius: 20px;
+  background: var(--surface, rgba(15, 23, 42, 0.82));
+  color: var(--text, #fff);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.36);
+  display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
+  text-align: center; width: 100%; max-width: 360px; margin: 0 auto;
+}
+.event-person-card.legacy .event-person-avatar {
+  width: clamp(108px, 18vw, 184px); height: clamp(108px, 18vw, 184px);
+  border-radius: 50%; overflow: hidden; background: rgba(255, 255, 255, 0.08);
+  position: relative; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.event-person-card.legacy .event-person-avatar img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.event-person-card.legacy .event-person-avatar span {
+  font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; color: var(--accent);
+}
+.event-person-card.legacy .event-person-name { font-weight: 700; margin-bottom: 0.25rem; font-size: 1.1rem; color: var(--text, #fff); }
+.event-person-card.legacy .event-person-role { font-size: 0.84rem; color: var(--accent); font-weight: 700; letter-spacing: 0.04em; }
+
+
+/* --- NEW 3D CARD LAYOUT (2026+) --- */
+.event-person-card.new-era {
+  position: relative; width: 100%; max-width: 320px; height: 420px;
+  border-radius: 20px; overflow: hidden; cursor: pointer;
+  background: var(--surface); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  margin: 0 auto; perspective: 1000px; transform-style: preserve-3d;
+}
+.event-person-card.new-era:hover {
+  transform: translateY(-8px); box-shadow: 0 22px 45px rgba(0, 0, 0, 0.25);
+}
+.event-person-photo {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%; object-fit: cover; z-index: 1; transition: transform 0.5s ease;
+}
+.event-person-card.new-era:hover .event-person-photo { transform: scale(1.05); }
+.event-person-card.new-era .portrait--placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--accent), rgba(0,0,0,0.8));
+  color: #fff; font-size: 4rem; font-weight: 800;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+}
+.event-person-gradient {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 75%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+  z-index: 2; pointer-events: none;
+}
+.event-person-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.6rem 1.2rem 1rem; z-index: 3; color: #fff;
+  display: flex; flex-direction: column; pointer-events: none;
+  align-items: flex-start;
+  text-align: left;
+}
+.event-person-name { font-weight: 800; font-size: 1.2rem; margin: 0 0 0.2rem; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.45); }
+.event-person-role { font-size: 0.78rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.event-person-bio-short {
+  font-size: 0.83rem; color: #e8e8e8; line-height: 1.4; margin-bottom: 0.75rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+}
+.event-person-arrow { text-align: center; color: rgba(255,255,255,0.8); animation: float 2s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+/* --- 3D FLIP MODAL STYLES --- */
+.person-modal-overlay {
+  position: fixed; inset: 0; z-index: 99999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+  padding: 1rem;
 }
 
-.event-person-role {
-  font-size: 0.9rem;
-  color: var(--muted);
+.person-modal-overlay.active {
+  opacity: 1; pointer-events: auto;
 }
 
-.event-person-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.person-modal {
+  background: var(--surface); color: var(--text);
+  width: min(100%, 900px); max-width: 900px; max-height: 85vh;
+  border-radius: 20px; overflow: hidden;
+  display: flex; flex-direction: row; align-items: stretch;
+  height: auto;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  /* 3D Flip Entrance */
+  transform: perspective(1200px) rotateX(15deg) scale(0.95);
+  opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.event-person-avatar {
-  width: clamp(108px, 18vw, 184px);
-  height: clamp(108px, 18vw, 184px);
-  border-radius: 50%;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
+.person-modal-overlay.active .person-modal {
+  transform: perspective(1200px) rotateX(0) scale(1); opacity: 1;
+}
+
+.person-modal-img {
+  width: 45%; min-height: 55vh; max-height: 85vh;
+  background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+
+.person-modal-img img,
+.person-modal-img .person-modal-img-content {
+  width: 100%; height: auto; max-height: 85vh; object-fit: contain; display: block;
+  opacity: 1; transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .person-modal {
+    flex-direction: column;
+    max-height: 95vh;
+  }
+  .person-modal-img {
+    width: 100%; height: 35vh;
+  }
+  .person-modal-body {
+    width: 100%; padding: 1.25rem;
+  }
+}
+
+.person-modal-body {
+  padding: 3rem 2.5rem; width: 55%; overflow-y: auto;
+  position: relative; display: flex; flex-direction: column; color: var(--text, #111);
+  min-height: 100%;
+}
+.person-modal-body h2 {
+  margin: 0 0 0.4rem; font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.2;
+  color: var(--text, #111); font-weight: 900;
+}
+.person-modal-body .person-modal-role {
+  margin: 0 0 1rem; color: var(--accent, #eb0028); font-size: 0.82rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+}
+.person-modal-body .person-modal-bio {
+  font-size: 0.95rem; line-height: 1.5; color: var(--text, #222);
+  margin-bottom: 1.25rem;
+}
+.person-modal-body .person-modal-bio p {
+  margin-bottom: 0.6rem;
+}
+.person-modal-body .person-modal-linkedin {
+  margin-top: auto; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1rem; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(234, 57, 136, 0.08); color: var(--accent, #eb0028);
+  text-decoration: none; font-size: 0.85rem; font-weight: 700;
+}
+
+.person-modal-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: var(--bg); color: var(--text);
+  border: 1px solid rgba(128,128,128,0.2); border-radius: 50%;
+  width: 40px; height: 40px; font-size: 1.6rem; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s ease; z-index: 10;
+}
+
+.person-modal-close:hover {
+  background: rgba(128,128,128,0.1); transform: scale(1.05);
+}
+
+.person-modal-title {
+  font-size: 2.2rem; font-weight: 900; margin: 0 0 0.2rem; line-height: 1.1;
+}
+
+.person-modal-role {
+  font-size: 1.1rem; color: var(--accent); margin-bottom: 2rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.person-modal-bio {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1.01rem; line-height: 1.5; color: var(--muted);
+  white-space: pre-line; /* Preserves paragraphs */
+  padding-right: 0.2rem;
+  overflow-y: auto;
 }
 
-.event-person-avatar img {
+.person-modal-bio p {
+  margin: 0 0 0.6rem;
+}
+
+.person-modal-bio::before,
+.person-modal-bio::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: inherit;
+  left: 0;
+  right: 0;
+  height: 2.8rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.24s ease;
 }
 
-.event-person-avatar span {
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 800;
-  color: var(--accent);
-  text-transform: uppercase;
-  position: relative;
+.person-modal-bio::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(20, 24, 28, 0.20), rgba(20, 24, 28, 0));
 }
+
+.person-modal-bio::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(20, 24, 28, 0.20), rgba(20, 24, 28, 0));
+}
+
+html[data-theme="dark"] .person-modal-bio::before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+}
+
+html[data-theme="dark"] .person-modal-bio::after {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+}
+
+.person-modal-bio.has-top-fade::before,
+.person-modal-bio.has-bottom-fade::after {
+  opacity: 0.95;
+}
+
+.person-modal-bio.has-top-fade::before,
+.person-modal-bio.has-bottom-fade::after {
+  opacity: 1;
+}
+
+.person-modal-bio.has-bottom-fade::after {
+  opacity: 1;
+}
+
+.linkedin-modal-link {
+  display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem;
+  font-weight: 700; color: var(--text); text-decoration: none;
+  padding: 0.8rem 1.6rem; border-radius: 12px;
+  background: var(--bg); border: 1px solid rgba(128,128,128,0.2);
+  width: fit-content; transition: all 0.2s;
+}
+
+.linkedin-modal-link:hover {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .person-modal { flex-direction: column; max-height: 90vh; }
+  .person-modal-img { width: 100%; height: 35vh; }
+  .person-modal-body { width: 100%; padding: 2rem 1.5rem; }
+}
+
 
 /* ----- TEAM SECTIONS ----- */
 
@@ -299,8 +463,7 @@
   font-weight: 800;
 }
 
-/* The actual grid + card styling comes from team.css (team-grid, cols, col, portrait-wrap, etc.) */
-
+/* The actual grid card styling comes from team.css (team-grid, cols, col, portrait-wrap, etc.) */
 .portrait--placeholder {
   display: flex;
   align-items: center;
@@ -312,18 +475,127 @@
   text-transform: uppercase;
 }
 
+/* ----- REVEAL ANIMATIONS ----- */
+
+.animate-once {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.animate-once.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portrait-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.portrait-wrap.revealed img {
+  transform: scale(1);
+  filter: blur(0px);
+}
+
+.portrait-wrap img {
+  transition: transform 0.8s ease, filter 0.8s ease;
+  transform: scale(1.1);
+  filter: blur(2px);
+  will-change: transform, filter;
+}
+
+/* ----- 3D FLIP MODAL STYLES ----- */
+
+.event-person-card.new-era {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.event-person-card.new-era .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.event-person-card.new-era.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.event-person-card.new-era .card-front,
+.event-person-card.new-era .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.event-person-card.new-era .card-front {
+  background: var(--surface);
+}
+
+.event-person-card.new-era .card-back {
+  background: var(--surface);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  color: var(--text);
+}
+
+.event-person-card.new-era .card-back .person-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.event-person-card.new-era .card-back .person-role {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.event-person-card.new-era .card-back .person-bio {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.event-person-card.new-era .card-back .linkedin-link {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0077b5;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.event-person-card.new-era .card-back .linkedin-link svg {
+  width: 18px;
+  height: 18px;
+}
+
 @media (max-width: 640px) {
   .event-section {
     padding-top: 2rem;
     padding-bottom: 2.3rem;
   }
-
   .event-people-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1.5rem;
   }
-
-  .event-person-card {
+  .event-person-card.legacy {
     max-width: min(320px, 100%);
   }
 }
