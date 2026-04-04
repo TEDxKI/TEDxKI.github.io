@@ -301,6 +301,9 @@ function initPersonModal() {
     const card = event.target.closest('.event-person-card.new-era');
     if (!card) return;
 
+    // Skip modal for hosts
+    if (card.closest('#hostsGrid')) return;
+
     const personData = {
       name: card.dataset.name || '',
       role: card.dataset.role || '',
