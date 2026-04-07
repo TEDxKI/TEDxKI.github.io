@@ -95,29 +95,48 @@ class SiteFooter extends HTMLElement {
 customElements.define('site-header', SiteHeader);
 customElements.define('social-strip', SocialStrip);
 customElements.define('site-footer', SiteFooter);
-customElements.define('newsletter-popup', newsletterpopup);
+class NewsletterPopupElement extends HTMLElement {
+  connectedCallback() {
+    this.classList.add('newsletter-popup');
+  }
+}
+customElements.define('newsletter-popup', NewsletterPopupElement);
 
 
 //<!-- Countdown
-const eventDate = new Date("April 18, 2026 17:00:00").getTime();
+const eventDate = Date.UTC(2026, 3, 18, 10, 0, 0);
+
+function formatCountdownValue(value) {
+  return String(value).padStart(2, '0');
+}
 
 function updateCountdown(){
-
-  const now = new Date().getTime();
+  const now = Date.now();
   const distance = eventDate - now;
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
 
-  if(distance <= 0) return;
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+  if (distance <= 0) {
+    daysEl.textContent = "00";
+    hoursEl.textContent = "00";
+    minutesEl.textContent = "00";
+    secondsEl.textContent = "00";
+    return;
+  }
 
   const days = Math.floor(distance / (1000*60*60*24));
   const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
   const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
   const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
-
+  daysEl.textContent = formatCountdownValue(days);
+  hoursEl.textContent = formatCountdownValue(hours);
+  minutesEl.textContent = formatCountdownValue(minutes);
+  secondsEl.textContent = formatCountdownValue(seconds);
 }
 
 setInterval(updateCountdown,1000);

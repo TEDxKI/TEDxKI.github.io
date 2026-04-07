@@ -386,7 +386,7 @@
     const closeBtn = document.querySelector(".newsletter-close");
     const inner = document.querySelector(".newsletter-inner");
 
-    if (!popup) return;
+    if (!popup || !backdrop || !closeBtn || !inner) return;
 
     /* Show only once per session */
     if (!sessionStorage.getItem("newsletterShown")) {
