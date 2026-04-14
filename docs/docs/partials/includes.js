@@ -104,41 +104,40 @@ class FlashSaleOverlay extends HTMLElement {
       <section class="flash-sale-popup" role="dialog" aria-modal="true" aria-label="Flash sale offer">
         <button class="flash-sale-close" type="button" aria-label="Close flash sale overlay">×</button>
         <div class="flash-sale-inner">
-          <div class="flash-sale-top">
-            <div class="flash-sale-copy">
-              <span class="flash-sale-badge">Flash Sale</span>
-              <h2 class="flash-sale-title">Get the sale as long as it's available!</h2>
-              <p class="flash-sale-subtitle">Extra discount on TEDxKI 2026 tickets — save now and meet the speakers and performers who are moving momentum forward.</p>
-
-              <div class="flash-sale-timer" aria-label="Countdown to event">
-                <h3>Event starts in</h3>
-                <div class="countdown-frame">
-                  <div class="countdown-item">
-                    <span id="flash-days">00</span>
-                    <label>Days</label>
-                  </div>
-                  <div class="countdown-item">
-                    <span id="flash-hours">00</span>
-                    <label>Hours</label>
-                  </div>
-                  <div class="countdown-item">
-                    <span id="flash-minutes">00</span>
-                    <label>Minutes</label>
-                  </div>
-                  <div class="countdown-item">
-                    <span id="flash-seconds">00</span>
-                    <label>Seconds</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flash-sale-actions">
-                <a class="flash-sale-btn" href="https://billetto.se/e/tedxki-2026-momentum-biljetter-1883169?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1" target="_blank" rel="noopener noreferrer">Get your tickets quickly</a>
-              </div>
-            </div>
+          <div class="flash-sale-copy">
+            <span class="flash-sale-badge">Flash Sale</span>
+            <h2 class="flash-sale-title">Get the sale as long as it’s available!</h2>
+            <p class="flash-sale-subtitle">Extra discount on TEDxKI 2026 tickets — save now and meet the speakers and performers who are moving momentum forward.</p>
 
             <div class="flash-sale-hero">
               <img src="https://images.ctfassets.net/4fo2kk5ozptr/2srGQbi2kFB5PIwuc1F7NL/f05f4bda45ff6369b57e7e3d92074b6d/Sale.jpg" alt="Flash Sale Banner" loading="eager" />
+            </div>
+
+            <div class="flash-sale-timer" aria-label="Countdown to event">
+              <h3>Event starts in</h3>
+              <div class="countdown-frame">
+                <div class="countdown-item">
+                  <span id="flash-days">00</span>
+                  <label>Days</label>
+                </div>
+                <div class="countdown-item">
+                  <span id="flash-hours">00</span>
+                  <label>Hours</label>
+                </div>
+                <div class="countdown-item">
+                  <span id="flash-minutes">00</span>
+                  <label>Minutes</label>
+                </div>
+                <div class="countdown-item">
+                  <span id="flash-seconds">00</span>
+                  <label>Seconds</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="flash-sale-actions">
+              <a class="flash-sale-btn" href="https://billetto.se/e/tedxki-2026-momentum-biljetter-1883169?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1" target="_blank" rel="noopener noreferrer">Claim Tickets — Save 20%</a>
+              <p class="flash-sale-hint">Use code <strong>FLASH20</strong> at checkout while the discount lasts.</p>
             </div>
           </div>
 
@@ -162,69 +161,50 @@ class FlashSaleOverlay extends HTMLElement {
               </div>
             </article>
             <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/7dNT2z7rx9QJAi2Ir4JC9i/00831394e87912ac3ace90f5037d01fc/2.jpg" alt="Johan Ståhl" loading="lazy"></div>
-              <div class="speaker-card__body">
-                <p class="speaker-card__label">Performer</p>
-                <h4 class="speaker-card__title">Johan Ståhl</h4>
-                <p class="speaker-card__meta">Swedish Illusionist</p>
-                <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
-              </div>
-            </article>
-            <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/5DMkixj3nm0EFrh3oravsB/1c31d39b3e8eadeede9d3faa684e9be7/4.jpg" alt="Gravity Dance Studio" loading="lazy"></div>
-              <div class="speaker-card__body">
-                <p class="speaker-card__label">Performer</p>
-                <h4 class="speaker-card__title">Gravity Dance Studio</h4>
-                <p class="speaker-card__meta">High-energy Dance Group</p>
-                <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
-              </div>
-            </article>
-            <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/placeholder-image.jpg" alt="Speaker 5" loading="lazy"></div>
+              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/67VrOXcWGziPwa1gumAHvM/5cc4f94e739e9d32cdb9aac6d5ed0426/3.jpg" alt="Johanna Nissén" loading="lazy"></div>
               <div class="speaker-card__body">
                 <p class="speaker-card__label">Speaker</p>
-                <h4 class="speaker-card__title">Speaker Name</h4>
-                <p class="speaker-card__meta">Expert in Innovation</p>
+                <h4 class="speaker-card__title">Johanna Nissén</h4>
+                <p class="speaker-card__meta">Co-Founder & CEO</p>
                 <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
               </div>
             </article>
             <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/placeholder-image.jpg" alt="Speaker 6" loading="lazy"></div>
+              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/18KclIn0maMMmY8etF5pk2/60ee40aabad7ac2a34513cbdbce37597/4.jpg" alt="Sebastian Blomé" loading="lazy"></div>
               <div class="speaker-card__body">
                 <p class="speaker-card__label">Speaker</p>
-                <h4 class="speaker-card__title">Speaker Name</h4>
-                <p class="speaker-card__meta">Technology Leader</p>
+                <h4 class="speaker-card__title">Sebastian Blomé</h4>
+                <p class="speaker-card__meta">Researcher</p>
                 <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
               </div>
             </article>
             <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/placeholder-image.jpg" alt="Speaker 7" loading="lazy"></div>
+              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/1tvV3tdDIIQTIbmhG7foyV/fdfd1db9ba51dd1dc4c34b836d3bdd99/6.jpg" alt="Pella Thiel" loading="lazy"></div>
               <div class="speaker-card__body">
                 <p class="speaker-card__label">Speaker</p>
-                <h4 class="speaker-card__title">Speaker Name</h4>
-                <p class="speaker-card__meta">Social Entrepreneur</p>
+                <h4 class="speaker-card__title">Pella Thiel</h4>
+                <p class="speaker-card__meta">Nature Advocate</p>
                 <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
               </div>
             </article>
             <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/placeholder-image.jpg" alt="Performer 3" loading="lazy"></div>
+              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/6QEGy9TWW8WkceoyGY8OP5/f69517cb3020cc73c488841323b193c8/7.jpg" alt="Sara Hägg" loading="lazy"></div>
               <div class="speaker-card__body">
-                <p class="speaker-card__label">Performer</p>
-                <h4 class="speaker-card__title">Performer Name</h4>
-                <p class="speaker-card__meta">Creative Artist</p>
+                <p class="speaker-card__label">Speaker</p>
+                <h4 class="speaker-card__title">Sara Hägg</h4>
+                <p class="speaker-card__meta">Associate Professor</p>
                 <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
               </div>
             </article>
             <article class="speaker-card">
-              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/placeholder-image.jpg" alt="Performer 4" loading="lazy"></div>
+              <div class="speaker-card__photo"><img src="https://images.ctfassets.net/4fo2kk5ozptr/6th0Mx03HjMHzVhqXKSofV/cdee4d52e256eedfb53cacb28c8bd6c5/6.jpg" alt="Christopher Sparshott" loading="lazy"></div>
               <div class="speaker-card__body">
-                <p class="speaker-card__label">Performer</p>
-                <h4 class="speaker-card__title">Performer Name</h4>
-                <p class="speaker-card__meta">Performance Artist</p>
+                <p class="speaker-card__label">Speaker</p>
+                <h4 class="speaker-card__title">Christopher Sparshott</h4>
+                <p class="speaker-card__meta">Teaching & Learning Specialist</p>
                 <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
               </div>
             </article>
-          </div>
           </div>
         </div>
       </section>`;
@@ -370,7 +350,7 @@ function startFlashSaleDisplay() {
   }
 }
 
-// startFlashSaleDisplay(); // Removed - now handled in app.js
+startFlashSaleDisplay();
 
 setInterval(updateFlashCountdown,1000);
 updateCountdown();

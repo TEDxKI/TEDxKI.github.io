@@ -9,6 +9,8 @@ import { renderTeamPage } from './render-team.js';
 import { renderAboutPage } from './render-about.js';
 import { renderWatchPage } from './render-watch.js';
 import { injectStaticImages } from './lib/staticImages.js';
+import { runContentfulQuery } from './lib/contentful.js';
+import { EVENT_BY_YEAR_QUERY } from './queries/eventQueries.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
@@ -104,6 +106,67 @@ async function renderSimpleStaticPages() {
   }
 }
 
+async function injectFlashSaleSpeakers() {
+  // Fetch 2026 event data
+  const eventData = await runContentfulQuery(EVENT_BY_YEAR_QUERY, { year: 2026 });
+  const event = eventData?.eventCollection?.items?.[0];
+  
+  if (!event?.speakersCollection?.items) {
+    console.warn('No speakers found for 2026 event');
+    return;
+  }
+
+  const speakers = event.speakersCollection.items.slice(0, 9); // Take first 9 speakers/performers
+  
+  // Inject into main partials
+  const partialsPath = path.join(ROOT_DIR, 'partials/includes.js');
+  let partialsContent = await fs.readFile(partialsPath, 'utf8');
+  
+  // Replace placeholder speaker data with real data
+  const speakerCardsHtml = speakers.map(speaker => {
+    const isSpeaker = speaker.__typename === 'Speaker';
+    const isPerformer = speaker.__typename === 'Performer';
+    const isHost = speaker.__typename === 'Host';
+    
+    const name = speaker.name || `${speaker.firstName} ${speaker.lastName}`;
+    const label = isSpeaker ? 'Speaker' : isPerformer ? 'Performer' : isHost ? 'Host' : 'Team Member';
+    const meta = speaker.jobTitle || speaker.title || 'Team Member';
+    const photoUrl = speaker.photo?.url || 'https://images.ctfassets.net/4fo2kk5ozptr/placeholder-image.jpg';
+    const photoAlt = speaker.photo?.description || name;
+    
+    return `            <article class="speaker-card">
+              <div class="speaker-card__photo"><img src="${photoUrl}" alt="${photoAlt}" loading="lazy"></div>
+              <div class="speaker-card__body">
+                <p class="speaker-card__label">${label}</p>
+                <h4 class="speaker-card__title">${name}</h4>
+                <p class="speaker-card__meta">${meta}</p>
+                <a class="speaker-card__link" href="/sites/events/events.html">Learn more</a>
+              </div>
+            </article>`;
+  }).join('\n');
+  
+  // Replace the hardcoded speaker cards with dynamic ones
+  const oldCardsPattern = /<div class="flash-sale-cards">\s*<article class="speaker-card">[\s\S]*?<\/div>\s*<\/div>/;
+  const newCardsHtml = `<div class="flash-sale-cards">
+${speakerCardsHtml}
+          </div>`;
+  
+  partialsContent = partialsContent.replace(oldCardsPattern, newCardsHtml);
+  
+  const outputPartialsPath = path.join(DIST_DIR, 'partials/includes.js');
+  await fs.mkdir(path.dirname(outputPartialsPath), { recursive: true });
+  await fs.writeFile(outputPartialsPath, partialsContent, 'utf8');
+  
+  // Also inject into docs partials
+  const docsPartialsPath = path.join(ROOT_DIR, 'docs/partials/includes.js');
+  let docsPartialsContent = await fs.readFile(docsPartialsPath, 'utf8');
+  docsPartialsContent = docsPartialsContent.replace(oldCardsPattern, newCardsHtml);
+  
+  const outputDocsPartialsPath = path.join(DIST_DIR, 'docs/partials/includes.js');
+  await fs.mkdir(path.dirname(outputDocsPartialsPath), { recursive: true });
+  await fs.writeFile(outputDocsPartialsPath, docsPartialsContent, 'utf8');
+}
+
 async function build() {
   const overallStart = Date.now();
 
@@ -115,6 +178,7 @@ async function build() {
   await step('Rendering team page', renderTeamPage);
   await step('Rendering watch page', renderWatchPage);
   await step('Rendering static content pages', renderSimpleStaticPages);
+  await step('Injecting flash sale speakers', injectFlashSaleSpeakers);
 
   const total = Date.now() - overallStart;
   console.log(`Build complete in ${fmt(total)}. Output in ./dist`);

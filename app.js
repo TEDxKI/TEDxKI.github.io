@@ -413,6 +413,14 @@
 
   });
 
+  /* ================================
+    Flash Sale Overlay
+  ================================ */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    maybeShowFlashSale();
+  });
+
 
 
 
