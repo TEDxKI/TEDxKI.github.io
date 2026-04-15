@@ -104,40 +104,41 @@ class FlashSaleOverlay extends HTMLElement {
       <section class="flash-sale-popup" role="dialog" aria-modal="true" aria-label="Flash sale offer">
         <button class="flash-sale-close" type="button" aria-label="Close flash sale overlay">×</button>
         <div class="flash-sale-inner">
-          <div class="flash-sale-copy">
-            <span class="flash-sale-badge">Flash Sale</span>
-            <h2 class="flash-sale-title">Get the sale as long as it’s available!</h2>
-            <p class="flash-sale-subtitle">Extra discount on TEDxKI 2026 tickets — save now and meet the speakers and performers who are moving momentum forward.</p>
+          <div class="flash-sale-top">
+            <div class="flash-sale-copy">
+              <span class="flash-sale-badge">Flash Sale</span>
+              <h2 class="flash-sale-title">Get the sale as long as it's available!</h2>
+              <p class="flash-sale-subtitle">Extra discount on TEDxKI 2026 tickets — save now and meet the speakers and performers who are moving momentum forward.</p>
 
-            <div class="flash-sale-hero">
-              <img src="https://images.ctfassets.net/4fo2kk5ozptr/2srGQbi2kFB5PIwuc1F7NL/f05f4bda45ff6369b57e7e3d92074b6d/Sale.jpg" alt="Flash Sale Banner" loading="eager" />
-            </div>
+              <div class="flash-sale-timer" aria-label="Countdown to event">
+                <h3>Event starts in</h3>
+                <div class="countdown-frame">
+                  <div class="countdown-item">
+                    <span id="flash-days">00</span>
+                    <label>Days</label>
+                  </div>
+                  <div class="countdown-item">
+                    <span id="flash-hours">00</span>
+                    <label>Hours</label>
+                  </div>
+                  <div class="countdown-item">
+                    <span id="flash-minutes">00</span>
+                    <label>Minutes</label>
+                  </div>
+                  <div class="countdown-item">
+                    <span id="flash-seconds">00</span>
+                    <label>Seconds</label>
+                  </div>
+                </div>
+              </div>
 
-            <div class="flash-sale-timer" aria-label="Countdown to event">
-              <h3>Event starts in</h3>
-              <div class="countdown-frame">
-                <div class="countdown-item">
-                  <span id="flash-days">00</span>
-                  <label>Days</label>
-                </div>
-                <div class="countdown-item">
-                  <span id="flash-hours">00</span>
-                  <label>Hours</label>
-                </div>
-                <div class="countdown-item">
-                  <span id="flash-minutes">00</span>
-                  <label>Minutes</label>
-                </div>
-                <div class="countdown-item">
-                  <span id="flash-seconds">00</span>
-                  <label>Seconds</label>
-                </div>
+              <div class="flash-sale-actions">
+                <a class="flash-sale-btn" href="https://billetto.se/e/tedxki-2026-momentum-biljetter-1883169?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1" target="_blank" rel="noopener noreferrer">Get your tickets quickly</a>
               </div>
             </div>
 
-            <div class="flash-sale-actions">
-              <a class="flash-sale-btn" href="https://billetto.se/e/tedxki-2026-momentum-biljetter-1883169?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1" target="_blank" rel="noopener noreferrer">Claim Tickets — Save 20%</a>
-              <p class="flash-sale-hint">Use code <strong>FLASH20</strong> at checkout while the discount lasts.</p>
+            <div class="flash-sale-hero">
+              <img src="https://images.ctfassets.net/4fo2kk5ozptr/2srGQbi2kFB5PIwuc1F7NL/f05f4bda45ff6369b57e7e3d92074b6d/Sale.jpg" alt="Flash Sale Banner" loading="eager" />
             </div>
           </div>
 
@@ -206,7 +207,6 @@ class FlashSaleOverlay extends HTMLElement {
               </div>
             </article>
           </div>
-        </div>
       </section>`;
     this.bindOverlayEvents();
   }
@@ -350,7 +350,7 @@ function startFlashSaleDisplay() {
   }
 }
 
-startFlashSaleDisplay();
+// startFlashSaleDisplay(); // Removed - now handled in app.js
 
 setInterval(updateFlashCountdown,1000);
 updateCountdown();
