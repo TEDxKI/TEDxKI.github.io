@@ -32,10 +32,6 @@
 
   <social-strip></social-strip>
 
-  <newsletter-popup></newsletter-popup>
-
-  <flash-sale-overlay></flash-sale-overlay>
-
 
   <main>
     <!-- Hero -->
@@ -56,79 +52,83 @@
         </div>
       </div>
 
-      <aside class="ticket-panel" aria-label="Ticket information">
-        <div class="ticket-panel__surface">
-          <div class="ticket-inner">
-            <h1 class="ticket-title"> TED<span style="font-size: 0.52em; vertical-align: super;">x</span>KI 2026</h1>
-            <p class="ticket-sub">Tickets are now available! The first 50 people can get a discount when using the code “EARLYBIRD26”.</p>
-
-            <div class="event-info">
-              <div class="event-item">
-                <div class="event-icon">🗓️</div>
-                <div class="event-text">
-                  <span class="event-label">Date</span>
-                  <span class="event-value">18 April 2026</span>
-                </div>
-              </div>
-
-              <div class="event-item">
-                <div class="event-icon">📍</div>
-                <div class="event-text">
-                  <span class="event-label">Location</span>
-                  <a class="event-value event-map" href="https://maps.app.goo.gl/HNtQtwXqsqydMBS17" target="_blank" rel="noopener">
-                    Medicinska Föreningen
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="countdown-frame">
-              <div class="countdown-item">
-                <span id="days">00</span>
-                <label>days</label>
-              </div>
-              <div class="countdown-item">
-                <span id="hours">00</span>
-                <label>hours</label>
-              </div>
-              <div class="countdown-item">
-                <span id="minutes">00</span>
-                <label>minutes</label>
-              </div>
-              <div class="countdown-item">
-                <span id="seconds">00</span>
-                <label>seconds</label>
-              </div>
-            </div>
-
-            <a class="ticket-btn" href="https://billetto.se/e/tedxki-2026-momentum-biljetter-1883169?utm_source=organiser&amp;utm_medium=share&amp;utm_campaign=copy_link&amp;utm_content=1" target="_blank" rel="noopener">
-              Get Tickets
-            </a>
-          </div>
-        </div>
-      </aside>
-
 
     </section>
 
+<!-- ===================== PHOTO GALLERY ===================== -->
+<section class="gallery-section scroll-fade" aria-label="TEDxKI 2026 Photo Gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <h2 class="gallery-title">
+         <span class="brand-mark">TED<span class="sup">x</span></span><span class="brand-tail">KI</span> <span>2026</span>
+      </h2>
+      <p class="gallery-subtitle">A day of ideas that change everything - in pictures.</p>
+    </div>
+
+
+    <!-- Preview strip — mosaic of cycling images -->
+    <button class="gallery-preview" id="galleryPreview" aria-label="Open full photo gallery" type="button">
+      <!-- Mosaic grid of 6 images that cycle individually -->
+      <div class="gallery-mosaic" id="galleryMosaic">
+        <img class="gallery-tile" data-static-code="gallery-2026-01" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/vkhGsrKfTptF8XHZimiiQ/8538037b9e752e36e654546b3a7580e2/gallery-2026-01.jpg?fm=webp&amp;q=82&amp;w=400" alt="TEDxKI 2026 event photo 1" data-placeholder="/assets/images/placeholder.jpg">
+        <img class="gallery-tile" data-static-code="gallery-2026-02" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2TwmpkCqChYqXQnZR5SXRT/bab7a19090603900995ccad3320cc5b7/gallery-2026-02.JPG?fm=webp&amp;q=82&amp;w=400" alt="TEDxKI 2026 event photo 2" data-placeholder="/assets/images/placeholder.jpg">
+        <img class="gallery-tile" data-static-code="gallery-2026-03" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/5b3zbZ5H8XfM265NqmC9mr/3a87ef5a7432c83b6ae2021b9145ecd8/gallery-2026-03.jpg?fm=webp&amp;q=82&amp;w=400" alt="TEDxKI 2026 event photo 3" data-placeholder="/assets/images/placeholder.jpg">
+        <img class="gallery-tile" data-static-code="gallery-2026-04" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2F8xlalRk114TqJmSJuXDp/14ff44e88f31adf7f658425d7f46b629/gallery-2026-04.jpg?fm=webp&amp;q=82&amp;w=400" alt="TEDxKI 2026 event photo 4" data-placeholder="/assets/images/placeholder.jpg">
+        <img class="gallery-tile" data-static-code="gallery-2026-05" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/3HVoq4TW7YpIxr0h5rShcT/da4022cb4aed626736c28217fb84cb63/gallery-2026-05.jpg?fm=webp&amp;q=82&amp;w=400" alt="TEDxKI 2026 event photo 5" data-placeholder="/assets/images/placeholder.jpg">
+        <img class="gallery-tile" data-static-code="gallery-2026-06" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/6E9ilEm6Mz1TcqQVtoE5AA/6820bc59c9624c4456abc18773c6e26c/gallery-2026-06.jpg?fm=webp&amp;q=82&amp;w=400" alt="TEDxKI 2026 event photo 6" data-placeholder="/assets/images/placeholder.jpg">
+      </div>
+
+      <!-- Hidden images for build process to fill all src -->
+      <div style="display:none;">
+        <img id="gallery-img-01" data-static-code="gallery-2026-01" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/vkhGsrKfTptF8XHZimiiQ/8538037b9e752e36e654546b3a7580e2/gallery-2026-01.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-02" data-static-code="gallery-2026-02" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2TwmpkCqChYqXQnZR5SXRT/bab7a19090603900995ccad3320cc5b7/gallery-2026-02.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-03" data-static-code="gallery-2026-03" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/5b3zbZ5H8XfM265NqmC9mr/3a87ef5a7432c83b6ae2021b9145ecd8/gallery-2026-03.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-04" data-static-code="gallery-2026-04" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2F8xlalRk114TqJmSJuXDp/14ff44e88f31adf7f658425d7f46b629/gallery-2026-04.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-05" data-static-code="gallery-2026-05" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/3HVoq4TW7YpIxr0h5rShcT/da4022cb4aed626736c28217fb84cb63/gallery-2026-05.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-06" data-static-code="gallery-2026-06" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/6E9ilEm6Mz1TcqQVtoE5AA/6820bc59c9624c4456abc18773c6e26c/gallery-2026-06.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-07" data-static-code="gallery-2026-07" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/5TK4XHnIU2Reo57yNk5ijX/4552c51270a696f392397f6c0e5c2c10/gallery-2026-07.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-08" data-static-code="gallery-2026-08" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/75yBKXQqt6woWHWVU6eNfh/2517363fe1658799a163682c4f728471/gallery-2026-08.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-09" data-static-code="gallery-2026-09" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/uweyLsAlmWn6Lr8ZzdtLL/91786d8219e9d1950bc7359f36689e5c/gallery-2026-09.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-10" data-static-code="gallery-2026-10" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/01oVm16eCCfJzw6YQirvGS/9a2fbeb44097548d9c786123efb68fb4/gallery-2026-10.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-11" data-static-code="gallery-2026-11" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2MUBueDaUhbCAQ2rVYQecs/6b6b308925393c12d8eef289c7ebcd04/gallery-2026-11.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-12" data-static-code="gallery-2026-12" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/5qzzrkBVJPvV2L3gtIo7sv/c386c0fdd0a6c69b95fc43f351c019ee/gallery-2026-12.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-13" data-static-code="gallery-2026-13" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/22TpaCsj20JWF7nrougdbc/2e4b12c4a84e99a506d871757765f18c/gallery-2026-13.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-14" data-static-code="gallery-2026-14" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/1duFSO6i10Heb7JN3cQxTi/7e455b79be9e6bd24a9e907df5da7bb7/gallery-2026-14.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-15" data-static-code="gallery-2026-15" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/4ZT8A0ZTO1xqFherAKzI87/f9f1d8155f413a4906e3ffb9e69f918b/gallery-2026-15.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-16" data-static-code="gallery-2026-16" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/oVStZhfQyEJqIA5suPxpm/2489cd686651cbea0d50f0cfa2e07c23/gallery-2026-16.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-17" data-static-code="gallery-2026-17" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2SNc5J14aa0homqFbk7DR8/f7e5f57e141e2522834b3a33c0423600/gallery-2026-17.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-18" data-static-code="gallery-2026-18" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/6AZQ79qMXKDl9pgyMyn6VM/94ea2337e90068bb439b379ea2a2c71b/gallery-2026-18.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-19" data-static-code="gallery-2026-19" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2OxoAXu1z6abQE2AxN2p8D/4c3408b3de0ccd3626c3e45338432346/gallery-2026-19.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-20" data-static-code="gallery-2026-20" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/5UUQtTpDrxmtzOsnQNPMWg/b9213e61d24d4e41b550593a2e13e774/gallery-2026-20.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-21" data-static-code="gallery-2026-21" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/1IKP2LLsN2OfIxmr8UvzOy/56bd70d46bb15cef0996682dc57b772e/gallery-2026-21.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-22" data-static-code="gallery-2026-22" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/4ngIuV943DrHiJI4fTHowY/22558e4314180d3c707b70b113837b5c/gallery-2026-22.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-23" data-static-code="gallery-2026-23" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/360V8tw0oeuBXxSKyIGOB8/56e477ad06d215f01e91620525422427/gallery-2026-23.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-24" data-static-code="gallery-2026-24" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/6SYPQdFlqRIDTK6UzDoQc7/a5b9c3a24c2751eabea849c5680e3c99/gallery-2026-24.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-25" data-static-code="gallery-2026-25" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/3jNfIQSwjNq83gJ6NVOOXm/6e72029c83f68250f8a13459fb6df4f7/gallery-2026-25.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-26" data-static-code="gallery-2026-26" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/1hdH8smMgzvZ0dLmPgVWWc/80fbf4d4134725639457d5aacc8b84a6/gallery-2026-26.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-27" data-static-code="gallery-2026-27" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/4uwW8Y0LX2HAcRhGJOkrxZ/4564d3fbf7d801eab233a4b2b672f52d/gallery-2026-27.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-28" data-static-code="gallery-2026-28" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/3BrxqOEYVaDJzL1njH9gni/3f0fb406cf158475638d21612b0f4283/gallery-2026-28.JPG?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-29" data-static-code="gallery-2026-29" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/7kCP0MaHTkxr4pCSln6pRT/366e7bc7db76801b400fc1e33819e70b/gallery-2026-29.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-30" data-static-code="gallery-2026-30" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/5zwhS9YRsd9dIjPApt35zl/44ba18396fa50d73dbebea9ecac3645f/gallery-2026-30.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-31" data-static-code="gallery-2026-31" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/1CTgsuGBOv5uZ4blgWxmhU/146577d43600e989117cbb3b6e76e36a/gallery-2026-31.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-32" data-static-code="gallery-2026-32" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/1JHYsmNWKnO3zw5UmNkPwb/ef3f095dedc99e56cdb7000fe759ef81/gallery-2026-32.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-33" data-static-code="gallery-2026-33" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/6TmwznzTSrWLW33JTlY9y9/b0b1eeeee48755820685138e1e16c944/gallery-2026-33.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-34" data-static-code="gallery-2026-34" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/21xslRbnuJe0ukz5zLyQhv/e01384f43115123a3469fb5e0b807f2d/gallery-2026-34.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+        <img id="gallery-img-35" data-static-code="gallery-2026-35" data-static-params="fm=webp&amp;q=82&amp;w=400" src="https://images.ctfassets.net/4fo2kk5ozptr/2yn5ZcsL39Oq3Y9lLnKJAu/37da58e55d0ecf6cde705aa142595b09/gallery-2026-35.jpg?fm=webp&amp;q=82&amp;w=400" alt="">
+      </div>
+
+      <!-- Invite label -->
+      <div class="gallery-cta-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M3 9h18M9 21V9"></path></svg>
+        View all photos
+      </div>
+    </button>
+  </div>
+</section>
 
     <!-- Content / example sections -->
     <section class="container content-list">
-      <article class="content-section scroll-fade">
-        <div class="content-inner">
-          <div class="content-media">
-            <img src="https://images.ctfassets.net/4fo2kk5ozptr/3004pTMYsh92bGxGl7Hgul/9b3719b619b452f20781bb400bfa0e6b/IMG_8938.jpg" alt="Example image 1" data-static-code="2026-Schedule ">
-          </div>
-          <div class="content-body">
-            <h2>Meet the Visionaries of Momentum</h2>
-            <p>Prepare for a transformative experience at this year's TEDxKI event. Our carefully curated schedule features three dynamic sessions packed with brilliant speakers and incredible artists. We kick off the day with insights from national cross-country skier Moa Ilar and nature advocate Pella Thiel, followed by a captivating performance from Swedish illusionist Johan Ståhl.</p>
-            <p>After a lunch intermission, the inspiration continues with engaging talks from teaching and learning specialist Christopher Sparshott, artist Sam Hultin, and associate professor Sara Hägg.</p>
-            <p>We will then recharge with a traditional Swedish fika before launching into our final session, which highlights an energizing routine by the Gravity Dance group alongside thought-provoking ideas from co-founder and CEO Johanna Nissén and researcher Sebastian Blomé.</p>
-            <a class="cta" href="/sites/events/events.html">More about the speakers and performers</a>
-          </div>
-        </div>
-      </article>
-
+      
       <!-- Sponsor marquee -->
       <section class="sponsor-band" aria-label="Partners &amp; sponsors">
         <h2>Our Sponsors in 2026</h2>
@@ -220,6 +220,147 @@
         <p></p>
       </div>
     </section>
+
+<!-- ==================== GALLERY LIGHTBOX ==================== -->
+<div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Photo gallery" aria-hidden="true">
+  <div class="gallery-lb-backdrop" id="galleryLbBackdrop"></div>
+  <div class="gallery-lb-inner">
+    <button class="gallery-lb-close" id="galleryLbClose" aria-label="Close gallery">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <div class="gallery-lb-header">
+      <h3 class="gallery-lb-title"> <span class="brand-mark">TED<span class="sup">x</span></span><span class="brand-tail">KI</span> <span>2026</span> - Momentum</h3>
+    </div>
+
+    <!-- Masonry / grid of all photos -->
+    <div class="gallery-lb-grid" id="galleryLbGrid">
+      <!-- All gallery images — add as many data-static-code entries as you have photos -->
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 1">
+        <img data-static-code="gallery-2026-01" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/vkhGsrKfTptF8XHZimiiQ/8538037b9e752e36e654546b3a7580e2/gallery-2026-01.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 1" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 2">
+        <img data-static-code="gallery-2026-02" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/2TwmpkCqChYqXQnZR5SXRT/bab7a19090603900995ccad3320cc5b7/gallery-2026-02.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 2" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 3">
+        <img data-static-code="gallery-2026-03" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/5b3zbZ5H8XfM265NqmC9mr/3a87ef5a7432c83b6ae2021b9145ecd8/gallery-2026-03.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 3" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 4">
+        <img data-static-code="gallery-2026-04" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/2F8xlalRk114TqJmSJuXDp/14ff44e88f31adf7f658425d7f46b629/gallery-2026-04.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 4" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 5">
+        <img data-static-code="gallery-2026-05" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/3HVoq4TW7YpIxr0h5rShcT/da4022cb4aed626736c28217fb84cb63/gallery-2026-05.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 5" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 6">
+        <img data-static-code="gallery-2026-06" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/6E9ilEm6Mz1TcqQVtoE5AA/6820bc59c9624c4456abc18773c6e26c/gallery-2026-06.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 6" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 7">
+        <img data-static-code="gallery-2026-07" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/5TK4XHnIU2Reo57yNk5ijX/4552c51270a696f392397f6c0e5c2c10/gallery-2026-07.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 7" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 8">
+        <img data-static-code="gallery-2026-08" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/75yBKXQqt6woWHWVU6eNfh/2517363fe1658799a163682c4f728471/gallery-2026-08.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 8" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 9">
+        <img data-static-code="gallery-2026-09" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/uweyLsAlmWn6Lr8ZzdtLL/91786d8219e9d1950bc7359f36689e5c/gallery-2026-09.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 9" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 10">
+        <img data-static-code="gallery-2026-10" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/01oVm16eCCfJzw6YQirvGS/9a2fbeb44097548d9c786123efb68fb4/gallery-2026-10.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 10" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 11">
+        <img data-static-code="gallery-2026-11" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/2MUBueDaUhbCAQ2rVYQecs/6b6b308925393c12d8eef289c7ebcd04/gallery-2026-11.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 11" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 12">
+        <img data-static-code="gallery-2026-12" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/5qzzrkBVJPvV2L3gtIo7sv/c386c0fdd0a6c69b95fc43f351c019ee/gallery-2026-12.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 12" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 13">
+        <img data-static-code="gallery-2026-13" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/22TpaCsj20JWF7nrougdbc/2e4b12c4a84e99a506d871757765f18c/gallery-2026-13.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 13" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 14">
+        <img data-static-code="gallery-2026-14" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/1duFSO6i10Heb7JN3cQxTi/7e455b79be9e6bd24a9e907df5da7bb7/gallery-2026-14.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 14" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 15">
+        <img data-static-code="gallery-2026-15" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/4ZT8A0ZTO1xqFherAKzI87/f9f1d8155f413a4906e3ffb9e69f918b/gallery-2026-15.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 15" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 16">
+        <img data-static-code="gallery-2026-16" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/oVStZhfQyEJqIA5suPxpm/2489cd686651cbea0d50f0cfa2e07c23/gallery-2026-16.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 16" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 17">
+        <img data-static-code="gallery-2026-17" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/2SNc5J14aa0homqFbk7DR8/f7e5f57e141e2522834b3a33c0423600/gallery-2026-17.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 17" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 18">
+        <img data-static-code="gallery-2026-18" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/6AZQ79qMXKDl9pgyMyn6VM/94ea2337e90068bb439b379ea2a2c71b/gallery-2026-18.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 18" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 19">
+        <img data-static-code="gallery-2026-19" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/2OxoAXu1z6abQE2AxN2p8D/4c3408b3de0ccd3626c3e45338432346/gallery-2026-19.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 19" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 20">
+        <img data-static-code="gallery-2026-20" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/5UUQtTpDrxmtzOsnQNPMWg/b9213e61d24d4e41b550593a2e13e774/gallery-2026-20.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 20" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 21">
+        <img data-static-code="gallery-2026-21" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/1IKP2LLsN2OfIxmr8UvzOy/56bd70d46bb15cef0996682dc57b772e/gallery-2026-21.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 21" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 22">
+        <img data-static-code="gallery-2026-22" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/4ngIuV943DrHiJI4fTHowY/22558e4314180d3c707b70b113837b5c/gallery-2026-22.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 22" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 23">
+        <img data-static-code="gallery-2026-23" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/360V8tw0oeuBXxSKyIGOB8/56e477ad06d215f01e91620525422427/gallery-2026-23.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 23" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 24">
+        <img data-static-code="gallery-2026-24" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/6SYPQdFlqRIDTK6UzDoQc7/a5b9c3a24c2751eabea849c5680e3c99/gallery-2026-24.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 24" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 25">
+        <img data-static-code="gallery-2026-25" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/3jNfIQSwjNq83gJ6NVOOXm/6e72029c83f68250f8a13459fb6df4f7/gallery-2026-25.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 25" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 26">
+        <img data-static-code="gallery-2026-26" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/1hdH8smMgzvZ0dLmPgVWWc/80fbf4d4134725639457d5aacc8b84a6/gallery-2026-26.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 26" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 27">
+        <img data-static-code="gallery-2026-27" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/4uwW8Y0LX2HAcRhGJOkrxZ/4564d3fbf7d801eab233a4b2b672f52d/gallery-2026-27.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 27" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 28">
+        <img data-static-code="gallery-2026-28" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/3BrxqOEYVaDJzL1njH9gni/3f0fb406cf158475638d21612b0f4283/gallery-2026-28.JPG?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 28" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 29">
+        <img data-static-code="gallery-2026-29" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/7kCP0MaHTkxr4pCSln6pRT/366e7bc7db76801b400fc1e33819e70b/gallery-2026-29.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 29" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 30">
+        <img data-static-code="gallery-2026-30" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/5zwhS9YRsd9dIjPApt35zl/44ba18396fa50d73dbebea9ecac3645f/gallery-2026-30.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 30" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 31">
+        <img data-static-code="gallery-2026-31" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/1CTgsuGBOv5uZ4blgWxmhU/146577d43600e989117cbb3b6e76e36a/gallery-2026-31.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 31" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 32">
+        <img data-static-code="gallery-2026-32" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/1JHYsmNWKnO3zw5UmNkPwb/ef3f095dedc99e56cdb7000fe759ef81/gallery-2026-32.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 32" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 33">
+        <img data-static-code="gallery-2026-33" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/6TmwznzTSrWLW33JTlY9y9/b0b1eeeee48755820685138e1e16c944/gallery-2026-33.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 33" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 34">
+        <img data-static-code="gallery-2026-34" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/21xslRbnuJe0ukz5zLyQhv/e01384f43115123a3469fb5e0b807f2d/gallery-2026-34.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 34" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <button class="gallery-lb-thumb" type="button" aria-label="Photo 35">
+        <img data-static-code="gallery-2026-35" data-static-params="fm=webp&amp;q=78&amp;w=600" src="https://images.ctfassets.net/4fo2kk5ozptr/2yn5ZcsL39Oq3Y9lLnKJAu/37da58e55d0ecf6cde705aa142595b09/gallery-2026-35.jpg?fm=webp&amp;q=78&amp;w=600" alt="TEDxKI 2026 event photo 35" data-placeholder="/assets/images/placeholder.jpg" loading="lazy">
+      </button>
+      <!-- Add more .gallery-lb-thumb items here for additional photos -->
+    </div>
+
+    <!-- Full-size viewer (shown when a thumb is clicked) -->
+    <div class="gallery-lb-viewer" id="galleryLbViewer" aria-hidden="true">
+      <button class="gallery-lb-viewer-close" id="galleryLbViewerClose" aria-label="Back to grid">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <img class="gallery-lb-viewer-img" id="galleryLbViewerImg" src="" alt="">
+      <button class="gallery-lb-viewer-nav gallery-lb-viewer-prev" id="galleryLbPrev" aria-label="Previous photo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="gallery-lb-viewer-nav gallery-lb-viewer-next" id="galleryLbNext" aria-label="Next photo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- ==================== END GALLERY ==================== -->
 
   </main>
 

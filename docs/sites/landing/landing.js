@@ -199,3 +199,192 @@ function reserveMaskHeight(lineMaskEl, htmlString) {
 })();
 
 })();
+
+/* =====================================================
+   PHOTO GALLERY — TEDxKI 2026
+   Mosaic preview with individual cycling + lightbox
+   ===================================================== */
+(function () {
+  'use strict';
+
+  // ---- Mosaic preview with individual cycling ----
+  const preview = document.getElementById('galleryPreview');
+  const mosaic  = document.getElementById('galleryMosaic');
+
+  if (!preview || !mosaic) return;
+
+  const tiles = Array.from(mosaic.querySelectorAll('.gallery-tile'));
+  const totalImages = 35;
+
+  // Collect all hidden images' src after build fills them
+  const hiddenImages = {};
+  for (let i = 1; i <= totalImages; i++) {
+    const img = document.getElementById(`gallery-img-${String(i).padStart(2, '0')}`);
+    if (img && img.src) {
+      hiddenImages[i] = img.src;
+    }
+  }
+
+  function pickStartIndices() {
+    const indices = [];
+    const available = Array.from({ length: totalImages }, (_, i) => i + 1);
+    while (indices.length < tiles.length && available.length) {
+      const random = Math.floor(Math.random() * available.length);
+      indices.push(available.splice(random, 1)[0]);
+    }
+    return indices;
+  }
+
+  function chooseNextIndex(tileIndex) {
+    const current = currentIndices[tileIndex];
+    const excluded = new Set(currentIndices);
+    excluded.delete(current);
+
+    const candidates = [];
+    for (let i = 1; i <= totalImages; i += 1) {
+      if (i === current) continue;
+      if (!excluded.has(i)) candidates.push(i);
+    }
+
+    if (candidates.length === 0) return current;
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  }
+
+  function updateTile(index, instant = false) {
+    const tile = tiles[index];
+    const imageIndex = currentIndices[index];
+    const src = hiddenImages[imageIndex];
+    if (!src) return;
+
+    const altText = `TEDxKI 2026 event photo ${imageIndex}`;
+    if (instant) {
+      tile.classList.remove('is-fading');
+      tile.dataset.transitioning = 'false';
+      tile.src = src;
+      tile.alt = altText;
+      return;
+    }
+
+    if (tile.dataset.transitioning === 'true') return;
+    tile.dataset.transitioning = 'true';
+
+    const preload = new Image();
+    preload.onload = () => {
+      const onFadeOut = (event) => {
+        if (event.propertyName !== 'opacity') return;
+        tile.removeEventListener('transitionend', onFadeOut);
+        tile.src = src;
+        tile.alt = altText;
+        requestAnimationFrame(() => {
+          tile.classList.remove('is-fading');
+          tile.dataset.transitioning = 'false';
+        });
+      };
+
+      tile.addEventListener('transitionend', onFadeOut);
+      requestAnimationFrame(() => {
+        tile.classList.add('is-fading');
+      });
+    };
+    preload.src = src;
+  }
+
+  // Start each tile with a unique image
+  let currentIndices = pickStartIndices();
+
+  const intervals = [6800, 7400, 8200, 9000, 9800, 10600];
+
+  tiles.forEach((tile, i) => {
+    updateTile(i, true);
+
+    setTimeout(() => {
+      setInterval(() => {
+        currentIndices[i] = chooseNextIndex(i);
+        updateTile(i);
+      }, intervals[i]);
+    }, i * 450);
+  });
+
+  // ---- Lightbox ----
+  const lightbox     = document.getElementById('galleryLightbox');
+  const backdrop     = document.getElementById('galleryLbBackdrop');
+  const lbClose      = document.getElementById('galleryLbClose');
+  const lbGrid       = document.getElementById('galleryLbGrid');
+  const viewer       = document.getElementById('galleryLbViewer');
+  const viewerImg    = document.getElementById('galleryLbViewerImg');
+  const viewerClose  = document.getElementById('galleryLbViewerClose');
+  const prevBtn      = document.getElementById('galleryLbPrev');
+  const nextBtn      = document.getElementById('galleryLbNext');
+
+  if (!lightbox) return;
+
+  const thumbButtons = lbGrid ? Array.from(lbGrid.querySelectorAll('.gallery-lb-thumb')) : [];
+  let viewerIndex = 0;
+
+  function openLightbox() {
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lbClose && lbClose.focus();
+  }
+
+  function closeLightbox() {
+    closeViewer();
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    preview && preview.focus();
+  }
+
+  function openViewer(index) {
+    viewerIndex = (index + thumbButtons.length) % thumbButtons.length;
+    const img = thumbButtons[viewerIndex] && thumbButtons[viewerIndex].querySelector('img');
+    if (!img || !viewerImg) return;
+    viewerImg.src = img.src;
+    viewerImg.alt = img.alt;
+    viewer.setAttribute('aria-hidden', 'false');
+    viewerClose && viewerClose.focus();
+  }
+
+  function closeViewer() {
+    viewer && viewer.setAttribute('aria-hidden', 'true');
+    viewerImg && (viewerImg.src = '');
+  }
+
+  // Wire preview -> open lightbox
+  preview.addEventListener('click', openLightbox);
+
+  // Wire close buttons
+  lbClose   && lbClose.addEventListener('click', closeLightbox);
+  backdrop  && backdrop.addEventListener('click', closeLightbox);
+  viewerClose && viewerClose.addEventListener('click', closeViewer);
+
+  // Wire thumbnail clicks
+  thumbButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => openViewer(i));
+  });
+
+  // Prev / Next
+  prevBtn && prevBtn.addEventListener('click', () => openViewer(viewerIndex - 1));
+  nextBtn && nextBtn.addEventListener('click', () => openViewer(viewerIndex + 1));
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
+      // If viewer is open, close just the viewer first; else close whole lightbox
+      if (viewer && viewer.getAttribute('aria-hidden') === 'false') {
+        closeViewer();
+      } else {
+        closeLightbox();
+      }
+    }
+
+    if (viewer && viewer.getAttribute('aria-hidden') === 'false') {
+      if (e.key === 'ArrowRight') openViewer(viewerIndex + 1);
+      if (e.key === 'ArrowLeft')  openViewer(viewerIndex - 1);
+    }
+  });
+
+})();
