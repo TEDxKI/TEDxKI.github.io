@@ -351,10 +351,10 @@ html[data-theme="dark"] .consent-modal .btn:not(.primary){
   .panel-meta{ width:100%; justify-content:flex-start; }
   .watch-grid-wrap{ padding:0.35rem 0 2.4rem; }
   .video-grid{ grid-template-columns: 1fr; gap:.8rem; padding:0 .35rem; }
-  .video-card{ border-radius:12px; padding:.4rem; max-width:520px; margin:0 auto; }
-  .thumb-btn{ border-radius:10px; }
-  .thumb-img{ height:180px; border-radius:10px; }
-  .meta{ padding:.7rem .8rem .85rem; }
+  .video-card{ border-radius:16px; padding:.3rem; max-width:560px; margin:0 auto; border:0; box-shadow:var(--shadow); }
+  .thumb-btn{ border-radius:13px; }
+  .thumb-img{ height:210px; border-radius:13px; }
+  .meta{ padding:.75rem .5rem .6rem; }
   .modal-panel{ width:95%; }
 }
 

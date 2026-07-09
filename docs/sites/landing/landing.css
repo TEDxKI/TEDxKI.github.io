@@ -641,15 +641,26 @@ html[data-theme="dark"] .gallery-lb-header {
 
 @media (max-width: 768px) {
   .gallery-preview {
-    aspect-ratio: 4 / 3;
-    border-radius: 14px;
+    aspect-ratio: 16 / 11;
+    border-radius: 16px;
   }
 
+  /* Collapse the six-tile mosaic into a single, confident cross-fading
+     photo — six sub-100px thumbnails just read as a loading state on a phone. */
   .gallery-mosaic {
-  z-index: 3;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 2px;
+    z-index: 3;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0;
+  }
+
+  .gallery-tile {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .gallery-tile:not(:first-child) {
+    display: none;
   }
 
   .gallery-lb-grid {
@@ -668,15 +679,8 @@ html[data-theme="dark"] .gallery-lb-header {
   .gallery-section { padding: 2.2rem 0; }
 
   .gallery-preview {
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-  }
-
-  .gallery-mosaic {
-  z-index: 3;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 1px;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
   }
 
   .gallery-lb-grid {

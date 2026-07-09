@@ -30,6 +30,7 @@ class SiteHeader extends HTMLElement {
         </button>
         </div>
     </nav>
+    </header>
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
         <div class="mobile-top">
         <button id="mobile-theme-toggle" class="theme-toggle small" aria-label="Toggle theme (mobile)" aria-pressed="false" title="Toggle theme">
@@ -48,8 +49,7 @@ class SiteHeader extends HTMLElement {
         <a href="/sites/sponsors/sponsors.html">SPONSORS</a>
         <a href="/sites/watch/watch.html">WATCH</a>
         <a href="/sites/contact/contact.html">CONTACT</a>
-    </div>
-    </header>`;
+    </div>`;
   }
 }
 
@@ -95,43 +95,3 @@ class SiteFooter extends HTMLElement {
 customElements.define('site-header', SiteHeader);
 customElements.define('social-strip', SocialStrip);
 customElements.define('site-footer', SiteFooter);
-
-
-//<!-- Countdown
-const eventDate = Date.UTC(2026, 3, 18, 10, 0, 0);
-
-function formatCountdownValue(value) {
-  return String(value).padStart(2, '0');
-}
-
-function updateCountdown(){
-  const now = Date.now();
-  const distance = eventDate - now;
-  const daysEl = document.getElementById("days");
-  const hoursEl = document.getElementById("hours");
-  const minutesEl = document.getElementById("minutes");
-  const secondsEl = document.getElementById("seconds");
-
-  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
-
-  if (distance <= 0) {
-    daysEl.textContent = "00";
-    hoursEl.textContent = "00";
-    minutesEl.textContent = "00";
-    secondsEl.textContent = "00";
-    return;
-  }
-
-  const days = Math.floor(distance / (1000*60*60*24));
-  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-  const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-  daysEl.textContent = formatCountdownValue(days);
-  hoursEl.textContent = formatCountdownValue(hours);
-  minutesEl.textContent = formatCountdownValue(minutes);
-  secondsEl.textContent = formatCountdownValue(seconds);
-}
-
-setInterval(updateCountdown,1000);
-updateCountdown();

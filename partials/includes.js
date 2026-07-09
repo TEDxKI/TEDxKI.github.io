@@ -30,6 +30,7 @@ class SiteHeader extends HTMLElement {
         </button>
         </div>
     </nav>
+    </header>
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
         <div class="mobile-top">
         <button id="mobile-theme-toggle" class="theme-toggle small" aria-label="Toggle theme (mobile)" aria-pressed="false" title="Toggle theme">
@@ -48,8 +49,7 @@ class SiteHeader extends HTMLElement {
         <a href="/sites/sponsors/sponsors.html">SPONSORS</a>
         <a href="/sites/watch/watch.html">WATCH</a>
         <a href="/sites/contact/contact.html">CONTACT</a>
-    </div>
-    </header>`;
+    </div>`;
   }
 }
 

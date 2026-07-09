@@ -113,24 +113,89 @@
   transform: translateY(0);
 }
 
-/* ---------- MOBILE OVERRIDES ---------- */
+/* ---------- MOBILE: CINEMATIC HERO ----------
+   Full-bleed photo banner with the title/intro overlaid at the
+   bottom on a dark scrim, instead of a small rectangle-and-cutout
+   graphic sitting above centered text.
+   Shared by team.html (title + intro) and events.html (switcher +
+   eyebrow + title + meta + description) — the container has a
+   generous min-height floor but is free to grow taller for the
+   longer event copy. */
 @media (max-width: 640px) {
+  .team-showcase {
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
   .team-inner {
-    align-items: center;
-    text-align: center;
-  }
-  .team-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    text-align: left;
+    position: relative;
     max-width: none;
-    --rect-w: 88vw;
-    --img-w: 84vw;
+    min-height: clamp(460px, 76vh, 640px);
+    gap: 0;
   }
+
+  .team-stack {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  .team-stack::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(8, 10, 14, 0.12) 0%, rgba(8, 10, 14, 0.32) 40%, rgba(8, 10, 14, 0.78) 68%, rgba(6, 7, 10, 0.95) 100%);
+  }
+
   .team-bg-rect {
-    height: clamp(120px, 28vw, 200px);
-    border-radius: 12px;
+    display: none;
   }
+
+  .team-image-wrap {
+    position: absolute;
+    inset: 0;
+    left: 0;
+    width: 100%;
+    /* reset the desktop centering transform, or the full-width image is
+       pushed left by half the viewport */
+    transform: none;
+  }
+
+  .team-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 0;
+  }
+
   .team-text {
-    max-width: 92vw;
-    padding: 0 1rem;
+    position: relative;
+    z-index: 2;
+    max-width: none;
+    width: 100%;
+    margin-top: 0;
+    padding: clamp(2.6rem, 30vw, 4rem) 1.15rem clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .team-title {
+    color: #fff;
+    text-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .team-intro {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
   }
 }
 
