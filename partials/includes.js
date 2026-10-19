@@ -300,4 +300,4 @@ class TeamApplyOverlay extends HTMLElement {
 customElements.define('site-header', SiteHeader);
 customElements.define('social-strip', SocialStrip);
 customElements.define('site-footer', SiteFooter);
-customElements.define('team-apply-overlay', TeamApplyOverlay);
+//customElements.define('team-apply-overlay', TeamApplyOverlay);
